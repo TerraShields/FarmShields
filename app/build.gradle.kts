@@ -1,6 +1,12 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.googleDevtoolsKsp)
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin") version "2.0.1" apply false
+    id("kotlin-android")
+    id("androidx.navigation.safeargs")
+    id("kotlin-parcelize")
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.23"
 }
 
 android {
@@ -33,6 +39,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+        buildConfig = true
+    }
 }
 
 dependencies {
@@ -45,4 +55,44 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //viewpager
+    implementation(libs.androidx.viewpager2)
+
+    //Navigation
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+
+    //room
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.paging)
+
+    //Camera
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
+
+    //Paging3
+    implementation(libs.androidx.paging.runtime.ktx)
+
+    //koin
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    //DataStore
+    implementation(libs.androidx.datastore.core)
+    implementation(libs.androidx.datastore.preferences)
+    //livedata
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+
+    //Glide & Image Loading
+    implementation(libs.glide)
+    implementation (libs.shimmer)
+
+    //splash screen
+    implementation (libs.androidx.core.splashscreen)
+
+    //image layout
+    implementation (libs.circleimageview)
 }
