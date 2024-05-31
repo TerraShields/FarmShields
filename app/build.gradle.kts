@@ -51,7 +51,14 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
+    implementation(libs.androidx.annotation)
+    implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.constraintlayout.compose)
+    implementation(libs.androidx.coordinatorlayout)
+    implementation(libs.design)
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -89,6 +96,7 @@ dependencies {
     //Glide & Image Loading
     implementation(libs.glide)
     implementation (libs.shimmer)
+    implementation(libs.androidx.cardview)
 
     //splash screen
     implementation (libs.androidx.core.splashscreen)
