@@ -42,7 +42,7 @@
         tools:targetApi="31">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_API_KEY" />
+            android:value="AIzaSyBEeg21exSGdxmp61RrgKpkUfVi8Y7hQxk" />
 
         <activity
             android:name=".MainActivity"

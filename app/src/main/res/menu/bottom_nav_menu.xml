@@ -2,25 +2,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/nav_home"
+        android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home"
         android:title="@string/home"
         app:actionLayout="@layout/bottom_nav_item"/>
 
     <item
-        android:id="@+id/nav_location"
+        android:id="@+id/mapsFragment"
         android:icon="@drawable/ic_location"
-        android:title="@string/locations"
+        android:title="@string/maps"
         app:actionLayout="@layout/bottom_nav_item"/>
 
     <item
-        android:id="@+id/nav_messages"
+        android:id="@+id/communityFragment"
         android:icon="@drawable/ic_messages"
         android:title="@string/messages"
         app:actionLayout="@layout/bottom_nav_item"/>
 
     <item
-        android:id="@+id/nav_notifications"
+        android:id="@+id/notificationsFragment"
         android:icon="@drawable/ic_notifications"
         android:title="@string/notifications"
         app:actionLayout="@layout/bottom_nav_item"/>

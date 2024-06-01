@@ -6,12 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.MenuRes
+import androidx.navigation.NavController
 import com.gagak.farmshields.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 object CustomBottomNavigationViewHelper {
-    fun setupBottomNavigationView(context: Context, bottomNavigationView: BottomNavigationView) {
+    fun setupBottomNavigationView(
+        context: Context,
+        bottomNavigationView: BottomNavigationView,
+        navController: NavController
+    ) {
         val menuView = bottomNavigationView.getChildAt(0) as ViewGroup
         for (i in 0 until menuView.childCount) {
             val itemView = menuView.getChildAt(i)
@@ -32,14 +36,29 @@ object CustomBottomNavigationViewHelper {
 
             // Handle click events to show/hide the label
             itemView.setOnClickListener {
-                for (j in 0 until menuView.childCount) {
-                    val otherItemView = menuView.getChildAt(j) as ViewGroup
-                    val otherLabel = otherItemView.findViewById<TextView>(R.id.label)
-                    val otherBackground = otherItemView.findViewById<View>(R.id.item_background)
-                    otherLabel.visibility = if (i == j) View.VISIBLE else View.GONE
-                    otherBackground.setBackgroundResource(if (i == j) R.drawable.shape_bottom_nav_item_background else android.R.color.transparent)
-                }
-                bottomNavigationView.selectedItemId = menuItem.itemId
+                updateSelectedItem(bottomNavigationView, menuItem.itemId)
+                navController.navigate(menuItem.itemId)
+            }
+        }
+
+        // Set initial selection
+        menuView.getChildAt(0).performClick()
+    }
+
+    fun updateSelectedItem(bottomNavigationView: BottomNavigationView, itemId: Int) {
+        val menuView = bottomNavigationView.getChildAt(0) as ViewGroup
+        for (i in 0 until menuView.childCount) {
+            val itemView = menuView.getChildAt(i) as ViewGroup
+            val label = itemView.findViewById<TextView>(R.id.label)
+            val background = itemView.findViewById<View>(R.id.item_background)
+            val menuItem = bottomNavigationView.menu.getItem(i)
+
+            if (menuItem.itemId == itemId) {
+                label.visibility = View.VISIBLE
+                background.setBackgroundResource(R.drawable.shape_bottom_nav_item_background)
+            } else {
+                label.visibility = View.GONE
+                background.setBackgroundResource(android.R.color.transparent)
             }
         }
     }

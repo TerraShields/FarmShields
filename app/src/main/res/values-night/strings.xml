@@ -91,4 +91,8 @@
     <string name="notifications">Notifications</string>
     <string name="messages">Messages</string>
     <string name="locations">Location</string>
+    <string name="hello_blank_fragment_community">Community</string>
+    <string name="hello_blank_fragment_notifications">Notifications</string>
+    <string name="hello_blank_fragment_profile">Profile</string>
+    <string name="maps">Maps</string>
 </resources>
