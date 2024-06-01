@@ -1,11 +1,28 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
+    <!-- Base application theme -->
     <style name="Base.Theme.FarmShields" parent="Theme.Material3.Light.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <item name="android:windowBackground">@color/white</item>
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+
+        <!-- Background color -->
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="customBackgroundColor">@color/white</item>
+
+        <!-- Text colors -->
         <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">@color/black</item>
+        <!-- Disable dark theme support -->
+<!--        <item name="android:forceDarkAllowed">false</item>-->
+
         <!-- Customize other attributes as needed -->
     </style>
 
-    <style name="Theme.FarmShields" parent="Base.Theme.FarmShields" />
+    <style name="Theme.FarmShields" parent="Base.Theme.FarmShields">
+        <!-- Force light theme -->
+<!--        <item name="android:nightMode">notnight</item>-->
+    </style>
 </resources>

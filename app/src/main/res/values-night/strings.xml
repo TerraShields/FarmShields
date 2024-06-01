@@ -87,4 +87,8 @@
     <string name="address">Address</string>
     <string name="description">Description</string>
     <string name="Logo">Logo</string>
+    <string name="ic_messages">Messages</string>
+    <string name="notifications">Notifications</string>
+    <string name="messages">Messages</string>
+    <string name="locations">Location</string>
 </resources>
