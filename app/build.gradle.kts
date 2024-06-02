@@ -54,53 +54,53 @@ dependencies {
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.constraintlayout.compose)
     implementation(libs.androidx.coordinatorlayout)
-    implementation(libs.design)
     implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    //viewpager
+    // viewpager
     implementation(libs.androidx.viewpager2)
 
-    //Navigation
+    // Navigation
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
-    //room
+    // Room
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.paging)
 
-    //Camera
+    // Camera
     implementation(libs.androidx.camera.camera2)
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)
 
-    //Paging3
+    // Paging3
     implementation(libs.androidx.paging.runtime.ktx)
 
-    //koin
+    // Koin
     implementation(libs.koin.core)
     implementation(libs.koin.android)
-    //DataStore
+
+    // DataStore
     implementation(libs.androidx.datastore.core)
     implementation(libs.androidx.datastore.preferences)
-    //livedata
+
+    // LiveData
     implementation(libs.androidx.lifecycle.livedata.ktx)
 
-    //Glide & Image Loading
+    // Glide & Image Loading
     implementation(libs.glide)
     implementation (libs.shimmer)
     implementation(libs.androidx.cardview)
 
-    //splash screen
+    // Splash screen
     implementation (libs.androidx.core.splashscreen)
 
-    //image layout
+    // Image layout
     implementation (libs.circleimageview)
 }

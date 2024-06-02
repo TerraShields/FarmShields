@@ -7,4 +7,8 @@
     <declare-styleable name="PasswordCustomeView">
         <attr name="toggleIcon" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="CustomBottomNavigationView">
+        <attr name="customBackgroundColor" format="color"/>
+    </declare-styleable>
 </resources>

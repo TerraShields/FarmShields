@@ -11,4 +11,9 @@
         <item name="cornerSize">50%</item>
         <item name="strokeWidth">2dp</item>
     </style>
+
+    <style name="Widget.FarmShields.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
 </resources>
