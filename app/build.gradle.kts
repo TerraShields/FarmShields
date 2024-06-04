@@ -20,7 +20,9 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "BASE_URL", "\"https://api-service-backend-tpercgplna-uc.a.run.app/api\"")
     }
 
     buildTypes {
@@ -85,6 +87,11 @@ dependencies {
     // Koin
     implementation(libs.koin.core)
     implementation(libs.koin.android)
+
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 
     // DataStore
     implementation(libs.androidx.datastore.core)
