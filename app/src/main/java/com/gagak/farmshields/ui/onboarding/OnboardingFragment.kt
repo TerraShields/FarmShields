@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.gagak.farmshields.R
 import com.gagak.farmshields.databinding.FragmentOnboardingBinding
@@ -33,10 +34,19 @@ class OnboardingFragment : Fragment() {
             OnboardingScreenFragment.newInstance("Ayo Mulai Dengan Hapetani", "Lindungi panenmu, tingkatkan hasil panenmu dengan Hapetani!", R.drawable.logo_onboard3)
         )
 
+        binding.apply {
+            buttonSignIn.setOnClickListener{
+                navigateToLogin()
+            }
+        }
+
         val adapter = ViewPagerAdapter(fragmentList, requireActivity().supportFragmentManager, lifecycle)
         binding.viewPager.adapter = adapter
 
-        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position -> }.attach()
+    }
+
+    private fun navigateToLogin(){
+        findNavController().navigate(R.id.action_onboardingFragment_to_loginFragment)
     }
 
     override fun onDestroyView() {

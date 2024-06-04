@@ -22,7 +22,7 @@ android {
 
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "BASE_URL", "\"https://api-service-backend-tpercgplna-uc.a.run.app/api\"")
+        buildConfigField("String", "BASE_URL", "\"https://api-service-backend-tpercgplna-uc.a.run.app/api/\"")
     }
 
     buildTypes {
@@ -65,6 +65,7 @@ dependencies {
 
     // viewpager
     implementation(libs.androidx.viewpager2)
+    implementation(libs.dotsindicator)
 
     // Navigation
     implementation(libs.androidx.navigation.fragment.ktx)

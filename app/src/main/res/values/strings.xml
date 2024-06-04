@@ -94,5 +94,9 @@
     <string name="hello_blank_fragment_notifications">Notifications</string>
     <string name="hello_blank_fragment_profile">Profile</string>
     <string name="maps">Maps</string>
+    <string name="eclipse1">eclipse1</string>
+    <string name="eclipse2">eclipse 2</string>
+    <string name="eclipse3">eclipse 3</string>
+    <string name="onboarding">Onboarding Image</string>
 </resources>
 

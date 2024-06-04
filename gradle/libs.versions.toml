@@ -1,5 +1,6 @@
 [versions]
 agp = "8.4.1"
+dotsindicator = "4.2"
 kotlin = "1.9.24"
 annotation = "1.8.0"
 cardview = "1.0.0"
@@ -43,6 +44,7 @@ design = { module = "com.android.support:design", version.ref = "design" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
+dotsindicator = { module = "com.tbuonomo:dotsindicator", version.ref = "dotsindicator" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomPaging" }
 androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "roomPaging" }

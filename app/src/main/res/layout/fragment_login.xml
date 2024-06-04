@@ -5,22 +5,46 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".ui.auth.LoginFragment">
 
-    <!-- Language Text -->
+    <ImageView
+        android:id="@+id/elipse_127"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/eclipse1"
+        android:src="@drawable/ellipse_127"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/elipse_126"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/eclipse2"
+        android:src="@drawable/ellipse_126"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/elipse_128"
+        android:layout_width="106dp"
+        android:layout_height="106dp"
+        android:contentDescription="@string/eclipse3"
+        android:src="@drawable/ellipse_128"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/language_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="124dp"
         android:layout_marginEnd="16dp"
         android:text="@string/english_us"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Logo -->
     <ImageView
         android:id="@+id/logo_image"
         android:layout_width="100dp"
@@ -34,7 +58,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3" />
 
-    <!-- Email Input Layout -->
     <com.gagak.farmshields.ui.customeview.EmailCustomeView
         android:id="@+id/email_custom_view"
         android:layout_width="0dp"
@@ -47,7 +70,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logo_image" />
 
-    <!-- Password Input Layout -->
     <com.gagak.farmshields.ui.customeview.PasswordCustomeView
         android:id="@+id/password_custom_view"
         android:layout_width="0dp"
@@ -60,7 +82,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/email_custom_view" />
 
-    <!-- Forgot Password Text -->
     <TextView
         android:id="@+id/forgot_password_text"
         android:layout_width="wrap_content"
@@ -72,7 +93,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/password_custom_view" />
 
-    <!-- Log In Button -->
     <Button
         android:id="@+id/login_button"
         android:layout_width="0dp"
@@ -89,7 +109,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/forgot_password_text" />
 
-    <!-- Create New Account Button -->
     <Button
         android:id="@+id/create_account_button"
         android:layout_width="0dp"
@@ -107,7 +126,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_button" />
 
-    <!-- ProgressBar -->
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
