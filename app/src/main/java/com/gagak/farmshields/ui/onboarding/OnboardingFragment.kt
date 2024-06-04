@@ -28,9 +28,9 @@ class OnboardingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val fragmentList = arrayListOf<Fragment>(
-            OnboardingScreenFragment.newInstance("Welcome to the App", "Description 1", R.drawable.ic_launcher_background),
-            OnboardingScreenFragment.newInstance("Discover Features", "Description 2", R.drawable.ic_launcher_foreground),
-            OnboardingScreenFragment.newInstance("Get Started", "Description 3", R.drawable.ic_launcher_background)
+            OnboardingScreenFragment.newInstance("Selamat Datang Di Hapetani", "Hapetani adalah aplikasi yang membantu petani untuk mengenali dan menanggulangi hama pada tanaman mereka dengan cepat dan mudah. Dengan Hapetani", R.drawable.logo_onboard1),
+            OnboardingScreenFragment.newInstance("Deteksi dini penyebaran hama", "Proyek kami dapat memprediksi penyebaran hama secara real-time hari demi hari.", R.drawable.logo_onboard2),
+            OnboardingScreenFragment.newInstance("Ayo Mulai Dengan Hapetani", "Lindungi panenmu, tingkatkan hasil panenmu dengan Hapetani!", R.drawable.logo_onboard3)
         )
 
         val adapter = ViewPagerAdapter(fragmentList, requireActivity().supportFragmentManager, lifecycle)

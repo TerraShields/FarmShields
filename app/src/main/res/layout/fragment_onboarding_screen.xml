@@ -8,15 +8,21 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:contentDescription="INI GAMABAR "
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="404dp"
+        android:layout_height="206dp"
+        android:contentDescription="INI GAMBAR"
+        android:maxWidth="100dp"
+        android:maxHeight="200dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/logo_onboard1"
         app:layout_constraintBottom_toTopOf="@id/textViewTitle"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        android:scaleType="centerCrop"
-        tools:srcCompat="@drawable/placeholder" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:srcCompat="@drawable/logo_onboard1" />
+
 
     <TextView
         android:id="@+id/textViewTitle"
@@ -25,6 +31,7 @@
         android:layout_marginTop="16dp"
         android:textSize="24sp"
         android:textStyle="bold"
+        android:textColor="@color/green"
         app:layout_constraintTop_toBottomOf="@id/imageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,10 +43,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        android:textColor="@color/green"
         app:layout_constraintTop_toBottomOf="@id/textViewTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"
         tools:text="Description" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
