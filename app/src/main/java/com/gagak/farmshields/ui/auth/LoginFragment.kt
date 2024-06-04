@@ -1,60 +1,108 @@
 package com.gagak.farmshields.ui.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ProgressBar
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.gagak.farmshields.R
+import com.gagak.farmshields.core.data.local.preferences.AuthPreferences
+import com.gagak.farmshields.core.domain.model.viewmodel.auth.AuthViewModel
+import com.gagak.farmshields.databinding.FragmentLoginBinding
+import com.gagak.farmshields.ui.customeview.EmailCustomeView
+import com.gagak.farmshields.ui.customeview.PasswordCustomeView
+import com.google.android.material.textfield.TextInputEditText
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [LoginFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class LoginFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val authViewModel: AuthViewModel by viewModel()
+    private var _binding: FragmentLoginBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var emailCustomView: EmailCustomeView
+    private lateinit var passwordCustomView: PasswordCustomeView
+    private lateinit var loginButton: Button
+    private lateinit var progressBar: ProgressBar
+    private lateinit var registerButton: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LoginFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LoginFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        emailCustomView = binding.emailCustomView
+        passwordCustomView = binding.passwordCustomView
+        loginButton = binding.loginButton
+        registerButton = binding.createAccountButton
+        progressBar = binding.progressBar
+
+        loginButton.setOnClickListener {
+            val email = emailCustomView.findViewById<TextInputEditText>(R.id.username_input).text.toString()
+            val password = passwordCustomView.findViewById<TextInputEditText>(R.id.password_input).text.toString()
+            authViewModel.login(email, password)
+        }
+
+        authViewModel.loginResponse.observe(viewLifecycleOwner, Observer { success ->
+            if (success) {
+                val token = authViewModel.authToken.value
+                if (token != null) {
+                    Log.d("Authentication", "Token: $token")
+                    val authPreferences = AuthPreferences(requireContext())
+                    authPreferences.saveToken(token)
+                    navigateToHome()
+                }
+                Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Login Failed", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        authViewModel.loading.observe(viewLifecycleOwner, Observer { isLoading ->
+            progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        })
+
+        authViewModel.error.observe(viewLifecycleOwner, Observer { error ->
+            error?.let {
+                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        registerButton.setOnClickListener {
+            navigateToRegister()
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    requireActivity().finishAffinity()
                 }
             }
+        )
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun navigateToHome() {
+        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+    }
+
+    private fun navigateToRegister() {
+        findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
     }
 }

@@ -42,7 +42,9 @@ class SplashFragment : Fragment() {
         Log.d("SplashFragment", "SplashFragment initialized")
 
         Handler(Looper.getMainLooper()).postDelayed({
-            navigateToOnboard()
+            if (isAdded) { // Check if the fragment is still added
+                navigateToOnboard()
+            }
         }, 3000) // 3-second delay
     }
 
