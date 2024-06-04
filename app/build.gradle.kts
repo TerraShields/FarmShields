@@ -103,4 +103,7 @@ dependencies {
 
     // Image layout
     implementation (libs.circleimageview)
+
+    //
+    implementation (libs.lottie)
 }
