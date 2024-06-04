@@ -1,4 +1,8 @@
 package com.gagak.farmshields.core.modules
 
-class NetworkModule {
+import com.gagak.farmshields.core.data.local.preferences.AuthPreferences
+import org.koin.dsl.module
+
+val networkModule = module {
+    single { AuthPreferences(get()) }
 }
