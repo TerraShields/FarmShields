@@ -113,5 +113,14 @@
     <string name="berawan">Berawan</string>
     <string name="icon_serangga">icon serangga</string>
     <string name="icon_petanis">icon petani</string>
+    <string name="itunuoluwa_abidoye">Itunuoluwa Abidoye</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="two_factor_authentication">Two-Factor Authentication</string>
+    <string name="log_out">Log out</string>
+    <string name="about_app">About App</string>
+    <string name="image">Image</string>
+    <string name="help_support">Help Support</string>
+    <string name="more">More</string>
+    <string name="my_account">My Account</string>
 </resources>
 

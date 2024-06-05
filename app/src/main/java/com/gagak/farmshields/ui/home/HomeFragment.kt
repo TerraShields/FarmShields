@@ -43,15 +43,25 @@ class HomeFragment : Fragment() {
 
         viewModel.userResponse.observe(viewLifecycleOwner, Observer { response ->
             response?.data?.user?.let { userDetail ->
-                Glide.with(this)
-                    .load(userDetail.image)
-                    .into(binding.logo)
+                binding.apply {
+                    Glide.with(this@HomeFragment)
+                        .load(userDetail.image)
+//                        .placeholder(R.drawable.placeholder_image) // Add a placeholder image
+//                        .error(R.drawable.error_image) // Add an error image
+                        .into(logo)
+                }
             }
         })
 
         viewModel.error.observe(viewLifecycleOwner, Observer { error ->
             Log.e("HomeFragment", "Error fetching user data: $error")
         })
+
+        binding.apply {
+            logo.setOnClickListener {
+                navigateToProfile()
+            }
+        }
 
         // Handle back navigation to exit the app
         requireActivity().onBackPressedDispatcher.addCallback(
@@ -70,6 +80,10 @@ class HomeFragment : Fragment() {
             Log.d("Authentication", "Token: $token")
             navigateToLogin()
         }
+    }
+
+    private fun navigateToProfile(){
+        findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
     }
 
     private fun navigateToLogin() {
