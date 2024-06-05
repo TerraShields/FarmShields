@@ -102,4 +102,16 @@
     <string name="hapetani">HAPETANI</string>
     <string name="by_hapetani_ltd">By HAPETANI LTD</string>
     <string name="mulai_sekarang">Mulai Sekarang</string>
+    <string name="icon_petani">icon petani</string>
+    <string name="selamat_datang_di_hapetani">Selamat Datang Di Hapetani</string>
+    <string name="wilayah_anda_aman">Wilayah anda aman</string>
+    <string name="asisten_petani">Asisten Petani</string>
+    <string name="laporkan_hama">Laporkan Hama</string>
+    <string name="tanya_paktani">Tanya PakTani</string>
+    <string name="_22">22°</string>
+    <string name="tangerang_banten">Tangerang, Banten</string>
+    <string name="icon_awan">Icon Awan</string>
+    <string name="berawan">Berawan</string>
+    <string name="icon_serangga">icon serangga</string>
+    <string name="icon_petanis">icon petani</string>
 </resources>

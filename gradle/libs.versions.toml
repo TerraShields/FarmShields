@@ -1,5 +1,6 @@
 [versions]
 agp = "8.4.1"
+compiler = "4.12.0"
 dotsindicator = "4.2"
 kotlin = "1.9.24"
 annotation = "1.8.0"
@@ -40,6 +41,7 @@ constraintlayoutCompose = "1.1.0-alpha13"
 androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutCompose" }
 androidx-swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout" }
 androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
+compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
 design = { module = "com.android.support:design", version.ref = "design" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }

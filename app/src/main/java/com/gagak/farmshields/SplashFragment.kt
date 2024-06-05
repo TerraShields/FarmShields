@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.gagak.farmshields.core.data.local.preferences.AuthPreferences
 import com.gagak.farmshields.databinding.FragmentSplashBinding
 
 class SplashFragment : Fragment() {
@@ -41,9 +42,15 @@ class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Log.d("SplashFragment", "SplashFragment initialized")
 
+        // Check if the user is authenticated
+        val authPreferences = AuthPreferences(requireContext())
         Handler(Looper.getMainLooper()).postDelayed({
             if (isAdded) { // Check if the fragment is still added
-                navigateToOnboard()
+                if (authPreferences.getToken().isNullOrEmpty()) {
+                    navigateToOnboard()
+                } else {
+                    navigateToHome()
+                }
             }
         }, 3000) // 3-second delay
     }
@@ -64,6 +71,14 @@ class SplashFragment : Fragment() {
         } else {
             Log.e("SplashFragment", "Unexpected current destination: ${currentDestination?.label}")
         }
+    }
+
+    private fun navigateToHome() {
+        findNavController().navigate(
+            R.id.action_splashFragment_to_homeFragment,
+            null,
+            NavOptions.Builder().setPopUpTo(R.id.splashFragment, true).build()
+        )
     }
 
     override fun onDestroyView() {

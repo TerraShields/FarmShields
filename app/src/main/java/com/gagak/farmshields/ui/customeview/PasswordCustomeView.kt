@@ -58,7 +58,7 @@ class PasswordCustomeView(context: Context, attrs: AttributeSet) : LinearLayout(
             passwordInputLayout.boxStrokeColor = ContextCompat.getColor(context, R.color.red)
         } else {
             passwordInputLayout.error = null
-            passwordInputLayout.boxStrokeColor = ContextCompat.getColor(context, R.color.colorSecondary)
+            passwordInputLayout.boxStrokeColor = ContextCompat.getColor(context, R.color.colorPrimaryVariant)
         }
     }
 }

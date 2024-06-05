@@ -103,6 +103,7 @@ dependencies {
 
     // Glide & Image Loading
     implementation(libs.glide)
+    annotationProcessor(libs.compiler)
     implementation (libs.shimmer)
     implementation(libs.androidx.cardview)
 
