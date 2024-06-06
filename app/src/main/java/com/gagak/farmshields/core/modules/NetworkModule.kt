@@ -4,6 +4,7 @@ import android.util.Log
 import com.gagak.farmshields.BuildConfig
 import com.gagak.farmshields.core.data.local.preferences.AuthPreferences
 import com.gagak.farmshields.core.data.remote.client.ApiService
+import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -23,10 +24,8 @@ val networkModule = module {
                     .addHeader("Authorization", "Bearer $token")
                     .build()
             } else {
-                // Token null atau kosong, lakukan penanganan di sini
-                println("Error: Token is null or empty")
                 Log.e("AuthInterceptor", "Error: Token is null or empty $token")
-                chain.request() // Lanjutkan permintaan tanpa token
+                chain.request()
             }
             chain.proceed(request)
         }
@@ -44,6 +43,10 @@ val networkModule = module {
     }
 
     single {
+//        val gson = GsonBuilder()
+//            .setLenient()
+//            .create()
+
         Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(get())

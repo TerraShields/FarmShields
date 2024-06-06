@@ -8,6 +8,7 @@
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">Welcome!</string>
+    <string name="default_web_client_id">YOUR_WEB_CLIENT_ID</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be &gt;8 characters</string>
     <string name="login_failed">Login failed</string>
@@ -122,4 +123,6 @@
     <string name="help_support">Help Support</string>
     <string name="more">More</string>
     <string name="my_account">My Account</string>
+    <string name="or_login_with">Or Login With</string>
+    <string name="google">Google</string>
 </resources>
