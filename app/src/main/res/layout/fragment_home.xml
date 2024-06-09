@@ -15,18 +15,19 @@
         android:gravity="center_vertical"
         android:paddingBottom="30dp">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/logo"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/logo_paktani"
+            android:contentDescription="@string/icon_petani"
+            tools:src="@tools:sample/avatars"
             android:layout_marginEnd="16dp" />
 
         <TextView
             android:id="@+id/user_avatar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Selamat Datang Di Hapetani" />
+            android:text="@string/selamat_datang_di_hapetani" />
     </LinearLayout>
 
     <!-- Weather Info -->
@@ -40,7 +41,7 @@
             android:id="@+id/temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="22°"
+            android:text="@string/_22"
             android:textSize="48sp"
             android:textColor="@android:color/white"
             android:layout_alignParentStart="true"
@@ -50,7 +51,7 @@
             android:id="@+id/location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cibinong, West Java"
+            android:text="@string/tangerang_banten"
             android:textSize="16sp"
             android:textColor="@android:color/white"
             android:layout_below="@id/temperature"
@@ -61,6 +62,7 @@
             android:id="@+id/weather_icon"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:contentDescription="@string/icon_awan"
             android:src="@drawable/sun"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true" />
@@ -69,7 +71,7 @@
             android:id="@+id/weather_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Berawan"
+            android:text="@string/berawan"
             android:textSize="16sp"
             android:textColor="@android:color/white"
             android:layout_below="@id/weather_icon"
@@ -81,7 +83,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Wilayah anda aman"
+        android:text="@string/wilayah_anda_aman"
         android:background="@color/green_light"
         android:textColor="@android:color/white"
         android:gravity="center"
@@ -92,7 +94,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fitur Utama"
+        android:text="@string/asisten_petani"
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
@@ -101,6 +103,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:baselineAligned="false"
         android:orientation="horizontal"
         android:weightSum="2"
         android:gravity="center">
@@ -118,6 +121,7 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:contentDescription="@string/icon_serangga"
                 android:src="@drawable/logo_bug"
                 android:layout_marginBottom="10dp"
                  />
@@ -127,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/green"
-                android:text="Laporkan Hama"
+                android:text="@string/laporkan_hama"
                 android:layout_marginTop="8dp" />
         </LinearLayout>
 
@@ -144,6 +148,7 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:contentDescription="@string/icon_petanis"
                 android:src="@drawable/logo_paktani"
                 android:layout_marginBottom="10dp"
                 />
@@ -153,7 +158,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/green"
-                android:text="Tanya PakTani"
+                android:text="@string/tanya_paktani"
                 android:layout_marginTop="8dp" />
         </LinearLayout>
     </LinearLayout>

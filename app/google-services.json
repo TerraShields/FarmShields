@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "534488982667",
+    "project_id": "capstone-32fce",
+    "storage_bucket": "capstone-32fce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:534488982667:android:a68ecfc566816273a1608e",
+        "android_client_info": {
+          "package_name": "com.gagak.farmshields"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "534488982667-nkvc69sn0q9tdistj8k1jc5k1joljas4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gagak.farmshields",
+            "certificate_hash": "ae96e4521d9ddb2f43f6f8c38531a41f19d13ae9"
+          }
+        },
+        {
+          "client_id": "534488982667-hi5cp07l3fciuak57hkep7ndj2jmti2s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0cRxXiOd5TScj7TlTiIXapvRjxsHVfns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "534488982667-hi5cp07l3fciuak57hkep7ndj2jmti2s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

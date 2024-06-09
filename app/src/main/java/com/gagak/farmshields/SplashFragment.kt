@@ -1,5 +1,6 @@
 package com.gagak.farmshields
 
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -7,9 +8,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowInsets
+import android.view.WindowInsetsController
+import androidx.annotation.RequiresApi
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.gagak.farmshields.core.data.local.preferences.AuthPreferences
 import com.gagak.farmshields.databinding.FragmentSplashBinding
 
 class SplashFragment : Fragment() {
@@ -17,11 +24,17 @@ class SplashFragment : Fragment() {
     private var _binding: FragmentSplashBinding? = null
     private val binding get() = _binding!!
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSplashBinding.inflate(inflater, container, false)
+        // Set full screen
+        requireActivity().window.insetsController?.apply {
+            hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
+            systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        }
         return binding.root
     }
 
@@ -29,8 +42,16 @@ class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Log.d("SplashFragment", "SplashFragment initialized")
 
+        // Check if the user is authenticated
+        val authPreferences = AuthPreferences(requireContext())
         Handler(Looper.getMainLooper()).postDelayed({
-            navigateToOnboard()
+            if (isAdded) { // Check if the fragment is still added
+                if (authPreferences.getToken().isNullOrEmpty()) {
+                    navigateToOnboard()
+                } else {
+                    navigateToHome()
+                }
+            }
         }, 3000) // 3-second delay
     }
 
@@ -52,8 +73,20 @@ class SplashFragment : Fragment() {
         }
     }
 
+    private fun navigateToHome() {
+        findNavController().navigate(
+            R.id.action_splashFragment_to_homeFragment,
+            null,
+            NavOptions.Builder().setPopUpTo(R.id.splashFragment, true).build()
+        )
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+
+        // Reset full screen setting when exiting the SplashFragment
+        val windowInsetsController = ViewCompat.getWindowInsetsController(requireActivity().window.decorView)
+        windowInsetsController?.show(WindowInsetsCompat.Type.statusBars() or WindowInsetsCompat.Type.navigationBars())
     }
 }

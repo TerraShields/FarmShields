@@ -45,7 +45,7 @@ class EmailCustomeView(context: Context, attrs: AttributeSet) : LinearLayout(con
             emailInputLayout.boxStrokeColor = ContextCompat.getColor(context, R.color.red)
         } else {
             emailInputLayout.error = null
-            emailInputLayout.boxStrokeColor = ContextCompat.getColor(context, R.color.gray)
+            emailInputLayout.boxStrokeColor = ContextCompat.getColor(context, R.color.colorPrimaryVariant)
         }
     }
 }

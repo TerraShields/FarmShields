@@ -5,6 +5,7 @@ plugins {
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin") version "2.0.1" apply false
     id("kotlin-android")
     id("androidx.navigation.safeargs")
+    id("com.google.gms.google-services")
     id("kotlin-parcelize")
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.23"
 }
@@ -20,7 +21,9 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "BASE_URL", "\"https://api-service-backend-tpercgplna-uc.a.run.app/api/\"")
     }
 
     buildTypes {
@@ -42,6 +45,7 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+        dataBinding = true
     }
 }
 
@@ -63,6 +67,7 @@ dependencies {
 
     // viewpager
     implementation(libs.androidx.viewpager2)
+    implementation(libs.dotsindicator)
 
     // Navigation
     implementation(libs.androidx.navigation.fragment.ktx)
@@ -86,6 +91,11 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.koin.android)
 
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
+
     // DataStore
     implementation(libs.androidx.datastore.core)
     implementation(libs.androidx.datastore.preferences)
@@ -95,8 +105,18 @@ dependencies {
 
     // Glide & Image Loading
     implementation(libs.glide)
+    annotationProcessor(libs.compiler)
     implementation (libs.shimmer)
     implementation(libs.androidx.cardview)
+
+    // Google Service
+    implementation(libs.androidx.credentials)
+    // optional - needed for credentials support from play services, for devices running
+    // Android 13 and below.
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.play.services.auth)
+    implementation(libs.googleid)
+
 
     // Splash screen
     implementation (libs.androidx.core.splashscreen)
