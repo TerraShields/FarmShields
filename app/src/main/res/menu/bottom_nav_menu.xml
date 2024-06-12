@@ -4,24 +4,20 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home"
-        android:title="@string/home"
-        app:actionLayout="@layout/bottom_nav_item"/>
+        android:title="@string/home"/>
 
     <item
         android:id="@+id/mapsFragment"
         android:icon="@drawable/ic_location"
-        android:title="@string/maps"
-        app:actionLayout="@layout/bottom_nav_item"/>
+        android:title="@string/maps" />
 
     <item
         android:id="@+id/communityFragment"
         android:icon="@drawable/ic_messages"
-        android:title="@string/messages"
-        app:actionLayout="@layout/bottom_nav_item"/>
+        android:title="@string/messages" />
 
     <item
         android:id="@+id/notificationsFragment"
         android:icon="@drawable/ic_notifications"
-        android:title="@string/notifications"
-        app:actionLayout="@layout/bottom_nav_item"/>
+        android:title="@string/notifications" />
 </menu>
