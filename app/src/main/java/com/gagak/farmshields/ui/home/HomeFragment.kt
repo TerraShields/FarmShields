@@ -61,6 +61,13 @@ class HomeFragment : Fragment() {
             logo.setOnClickListener {
                 navigateToProfile()
             }
+            ivAnita.setOnClickListener {
+                navigateToAnita()
+            }
+            askFarmer.setOnClickListener {
+                navigateToAnita()
+            }
+
         }
 
         // Handle back navigation to exit the app
@@ -80,6 +87,10 @@ class HomeFragment : Fragment() {
             Log.d("Authentication", "Token: $token")
             navigateToLogin()
         }
+    }
+
+    private fun navigateToAnita(){
+        findNavController().navigate((R.id.action_homeFragment_to_anitaFragment))
     }
 
     private fun navigateToProfile(){

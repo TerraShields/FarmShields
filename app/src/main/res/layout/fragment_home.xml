@@ -146,6 +146,7 @@
             android:layout_marginStart="8dp">
 
             <ImageView
+                android:id="@+id/ivAnita"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:contentDescription="@string/icon_petanis"

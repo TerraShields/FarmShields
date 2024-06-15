@@ -4,10 +4,12 @@ import android.util.Log
 import com.gagak.farmshields.BuildConfig
 import com.gagak.farmshields.core.data.local.preferences.AuthPreferences
 import com.gagak.farmshields.core.data.remote.client.ApiService
+import com.gagak.farmshields.core.data.remote.client.ChatApiService
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -19,13 +21,17 @@ val networkModule = module {
         val authPreferences: AuthPreferences = get()
         Interceptor { chain ->
             val token = authPreferences.getToken()
+            val original = chain.request()
             val request = if (!token.isNullOrEmpty()) {
-                chain.request().newBuilder()
+                original.newBuilder()
                     .addHeader("Authorization", "Bearer $token")
+                    .addHeader("Content-Type", "application/json")
                     .build()
             } else {
                 Log.e("AuthInterceptor", "Error: Token is null or empty $token")
-                chain.request()
+                original.newBuilder()
+                    .addHeader("Content-Type", "application/json")
+                    .build()
             }
             chain.proceed(request)
         }
@@ -41,20 +47,30 @@ val networkModule = module {
             .addInterceptor(loggingInterceptor)
             .build()
     }
+}
 
-    single {
-//        val gson = GsonBuilder()
-//            .setLenient()
-//            .create()
-
+val retrofitModule = module {
+    single(named("default")) {
         Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(get())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+            .build()
+    }
+
+    single(named("chat")) {
+        Retrofit.Builder()
+            .baseUrl(BuildConfig.BASE_URL_CHAT)
+            .client(get())
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
             .build()
     }
 
     single {
-        get<Retrofit>().create(ApiService::class.java)
+        get<Retrofit>(named("default")).create(ApiService::class.java)
+    }
+
+    single {
+        get<Retrofit>(named("chat")).create(ChatApiService::class.java)
     }
 }

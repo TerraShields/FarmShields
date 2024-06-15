@@ -59,6 +59,9 @@
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_anitaFragment"
+            app:destination="@id/anitaFragment" />
     </fragment>
 
     <fragment
@@ -110,6 +113,13 @@
         <argument
             android:name="url"
             app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/anitaFragment"
+        android:name="com.gagak.farmshields.ui.anita.AnitaFragment"
+        android:label="fragment_anita"
+        tools:layout="@layout/fragment_anita">
     </fragment>
 
 </navigation>
