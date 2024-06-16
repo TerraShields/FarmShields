@@ -9,9 +9,6 @@ import org.koin.dsl.module
 val repoModule = module {
     single { AuthRepository(get()) }
     single { UserRepository(get()) }
-<<<<<<< HEAD
     single { AnitaRepository(get()) }
-=======
     single { MainRepository(get()) }
->>>>>>> development-authenthication
 }

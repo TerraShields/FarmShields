@@ -49,32 +49,30 @@ val networkModule = module {
     }
 }
 
-<<<<<<< HEAD
 val retrofitModule = module {
     single(named("default")) {
-=======
-    single {
->>>>>>> development-authenthication
-        Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
-            .client(get())
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-            .build()
-    }
+        single {
+            Retrofit.Builder()
+                .baseUrl(BuildConfig.BASE_URL)
+                .client(get())
+                .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+                .build()
+        }
 
-    single(named("chat")) {
-        Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL_CHAT)
-            .client(get())
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-            .build()
-    }
+        single(named("chat")) {
+            Retrofit.Builder()
+                .baseUrl(BuildConfig.BASE_URL_CHAT)
+                .client(get())
+                .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
+                .build()
+        }
 
-    single {
-        get<Retrofit>(named("default")).create(ApiService::class.java)
-    }
+        single {
+            get<Retrofit>(named("default")).create(ApiService::class.java)
+        }
 
-    single {
-        get<Retrofit>(named("chat")).create(ChatApiService::class.java)
+        single {
+            get<Retrofit>(named("chat")).create(ChatApiService::class.java)
+        }
     }
 }
