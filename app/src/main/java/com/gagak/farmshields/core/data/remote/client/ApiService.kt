@@ -63,8 +63,6 @@ interface ApiService {
         @Part("latitude") latitude: RequestBody,
         @Part("longitude") longitude: RequestBody,
         @Part("description") description: RequestBody,
-        @Part("report_id") reportId: RequestBody,
-        @Part("user_id") userId: RequestBody,
         @Part("sign") sign: RequestBody
     ): Response<MainResponse>
 
