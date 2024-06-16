@@ -4,5 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class AnitaResponse(
     @SerializedName("system")
-    val system: String
+    val system: String,
+    @SerializedName("caption")
+    val caption: String
 )

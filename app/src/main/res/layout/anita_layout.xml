@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/avatarImageView"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/logo_paktani" />
+
+        <TextView
+            android:id="@+id/messageTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/sent_message_background"
+            android:maxWidth="240dp"
+            android:padding="8dp"
+            android:text="ini pesan"
+            android:textColor="@android:color/black" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/timestampTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="4dp"
+        android:text="waktu"
+        android:textSize="12sp" />
+
+</LinearLayout>
