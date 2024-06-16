@@ -25,6 +25,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "BASE_URL", "\"https://api-service-backend-tpercgplna-uc.a.run.app/api/\"")
         buildConfigField("String", "BASE_URL_CHAT", "\"https://chat-api-tpercgplna-et.a.run.app/\"")
+        buildConfigField("String", "BASE_URL_CHAT", "\"https://api-model-tpercgplna-et.a.run.app/api/\"")
     }
 
     buildTypes {
