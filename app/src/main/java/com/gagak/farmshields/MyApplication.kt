@@ -2,6 +2,8 @@ package com.gagak.farmshields
 
 import android.app.Application
 import com.gagak.farmshields.core.modules.appModule
+import com.gagak.farmshields.core.modules.networkModule
+import com.gagak.farmshields.core.modules.retrofitModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext
@@ -15,7 +17,9 @@ class MyApplication : Application() {
             androidContext(this@MyApplication)
             modules(
                 listOf(
-                    appModule
+                    appModule,
+                    networkModule,
+                    retrofitModule
                 )
             )
         }

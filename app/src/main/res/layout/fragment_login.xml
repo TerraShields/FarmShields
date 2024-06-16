@@ -5,36 +5,48 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".ui.auth.LoginFragment">
 
-    <!-- Language Text -->
-    <TextView
-        android:id="@+id/language_text"
+    <ImageView
+        android:id="@+id/elipse_127"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/english_us"
-        android:textSize="16sp"
+        android:contentDescription="@string/eclipse1"
+        android:src="@drawable/ellipse_127"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/elipse_126"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/eclipse2"
+        android:src="@drawable/ellipse_126"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/elipse_128"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/eclipse3"
+        android:src="@drawable/ellipse_128"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Logo -->
     <ImageView
         android:id="@+id/logo_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/Logo"
-        android:src="@drawable/iconoir_app_notification_solid"
+        android:src="@drawable/ic_lg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintVertical_bias="0.1" />
 
-    <!-- Email Input Layout -->
     <com.gagak.farmshields.ui.customeview.EmailCustomeView
         android:id="@+id/email_custom_view"
         android:layout_width="0dp"
@@ -47,7 +59,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/logo_image" />
 
-    <!-- Password Input Layout -->
     <com.gagak.farmshields.ui.customeview.PasswordCustomeView
         android:id="@+id/password_custom_view"
         android:layout_width="0dp"
@@ -60,7 +71,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/email_custom_view" />
 
-    <!-- Forgot Password Text -->
     <TextView
         android:id="@+id/forgot_password_text"
         android:layout_width="wrap_content"
@@ -72,7 +82,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/password_custom_view" />
 
-    <!-- Log In Button -->
     <Button
         android:id="@+id/login_button"
         android:layout_width="0dp"
@@ -80,6 +89,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
+        android:background="@drawable/auth_shape"
         android:backgroundTint="@color/green"
         android:text="@string/log_in"
         android:textColor="@color/white"
@@ -89,7 +99,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/forgot_password_text" />
 
-    <!-- Create New Account Button -->
     <Button
         android:id="@+id/create_account_button"
         android:layout_width="0dp"
@@ -98,6 +107,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
+        android:background="@drawable/auth_shape_2"
         android:backgroundTint="@color/black"
         android:text="@string/create_new_account"
         android:textColor="@color/white"
@@ -107,7 +117,73 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_button" />
 
-    <!-- ProgressBar -->
+    <!-- Login With    -->
+    <LinearLayout
+        android:id="@+id/layout_or_login_with"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/create_account_button"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/create_account_button">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="@color/gray" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="@string/or_login_with"
+            android:textColor="@color/gray"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="@color/gray" />
+    </LinearLayout>
+
+    <!--    Cardview Google Sign-->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_google_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_or_login_with"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        android:elevation="4dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_or_login_with">
+
+        <ImageView
+            android:id="@+id/img_google_login"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/google"
+            android:src="@drawable/google_ic" />
+    </androidx.cardview.widget.CardView>
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"

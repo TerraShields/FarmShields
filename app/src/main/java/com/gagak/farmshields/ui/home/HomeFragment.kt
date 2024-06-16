@@ -1,60 +1,126 @@
 package com.gagak.farmshields.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.gagak.farmshields.R
+import com.gagak.farmshields.core.data.adapter.MainAdapter
+import com.gagak.farmshields.core.data.local.preferences.AuthPreferences
+import com.gagak.farmshields.core.domain.model.viewmodel.main.MainViewModel
+import com.gagak.farmshields.core.domain.model.viewmodel.user.UserViewModel
+import com.gagak.farmshields.databinding.FragmentHomeBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val viewModel: UserViewModel by viewModel()
+    private val mainViewModel: MainViewModel by viewModel()
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var authPreferences: AuthPreferences
+    private lateinit var mainAdapter: MainAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        authPreferences = AuthPreferences(requireContext())
+        checkAuthentication()
+
+        viewModel.getUser()
+
+        viewModel.userResponse.observe(viewLifecycleOwner, Observer { response ->
+            response?.data?.user?.let { userDetail ->
+                binding.apply {
+                    Glide.with(this@HomeFragment)
+                        .load(userDetail.image)
+                        .into(logo)
                 }
             }
+        })
+
+        mainAdapter = MainAdapter()
+        binding.recyclerViewReports.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = mainAdapter
+        }
+
+        mainViewModel.getReports().observe(viewLifecycleOwner, Observer { pagingData ->
+            mainAdapter.submitData(lifecycle, pagingData)
+        })
+
+        viewModel.error.observe(viewLifecycleOwner, Observer { error ->
+            Log.e("HomeFragment", "Error fetching user data: $error")
+        })
+
+        binding.apply {
+            logo.setOnClickListener {
+                navigateToProfile()
+            }
+            ivAnita.setOnClickListener {
+                navigateToAnita()
+            }
+            askFarmer.setOnClickListener {
+                navigateToAnita()
+            }
+            reportBug.setOnClickListener {
+                navigateToReportBug()
+            }
+        }
+
+        // Handle back navigation to exit the app
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    requireActivity().finishAffinity() // Exit the app
+                }
+            }
+        )
+    }
+
+    private fun checkAuthentication() {
+        val token = authPreferences.getToken()
+        if (authPreferences.getToken().isNullOrEmpty()) {
+            Log.d("Authentication", "Token: $token")
+            navigateToLogin()
+        }
+    }
+
+    private fun navigateToAnita() {
+        findNavController().navigate((R.id.action_homeFragment_to_anitaFragment))
+    }
+
+    private fun navigateToReportBug() {
+        findNavController().navigate(R.id.action_homeFragment_to_reportFragment)
+    }
+
+    private fun navigateToProfile() {
+        findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+    }
+
+    private fun navigateToLogin() {
+        findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
