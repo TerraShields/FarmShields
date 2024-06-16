@@ -43,10 +43,6 @@ val networkModule = module {
     }
 
     single {
-//        val gson = GsonBuilder()
-//            .setLenient()
-//            .create()
-
         Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(get())

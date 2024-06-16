@@ -59,6 +59,9 @@
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_reportBugFragment"
+            app:destination="@id/reportFragment" />
     </fragment>
 
     <fragment
@@ -110,6 +113,15 @@
         <argument
             android:name="url"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/reportFragment"
+        android:name="com.gagak.farmshields.ui.report.ReportFragment"
+        android:label="fragment_report"
+        tools:layout="@layout/fragment_report">
+        <action
+            android:id="@+id/action_reportFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 
 </navigation>

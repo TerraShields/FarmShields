@@ -16,4 +16,11 @@
     <color name="colorSecondary">#FFFFFFFF</color>
     <color name="colorSecondaryVariant">#BEE3CB</color>
     <color name="colorThirdVariant">#34A853</color>
+    <color name="dangerSign">#FA0000</color>
+    <color name="dangerContainer">#F48787</color>
+    <color name="safeContainer">#BEE3CB</color>
+    <color name="warningContainer">#FFE500</color>
+    <color name="safeSign">#05F900</color>
+    <color name="light_red">#F48787</color>
+    <color name="warningnSign">#FFA800</color>
 </resources>

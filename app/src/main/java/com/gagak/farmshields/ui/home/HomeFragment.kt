@@ -10,9 +10,12 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.gagak.farmshields.R
+import com.gagak.farmshields.core.data.adapter.MainAdapter
 import com.gagak.farmshields.core.data.local.preferences.AuthPreferences
+import com.gagak.farmshields.core.domain.model.viewmodel.main.MainViewModel
 import com.gagak.farmshields.core.domain.model.viewmodel.user.UserViewModel
 import com.gagak.farmshields.databinding.FragmentHomeBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -20,9 +23,11 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class HomeFragment : Fragment() {
 
     private val viewModel: UserViewModel by viewModel()
+    private val mainViewModel: MainViewModel by viewModel()
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var authPreferences: AuthPreferences
+    private lateinit var mainAdapter: MainAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +58,16 @@ class HomeFragment : Fragment() {
             }
         })
 
+        mainAdapter = MainAdapter()
+        binding.recyclerViewReports.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = mainAdapter
+        }
+
+        mainViewModel.getReports().observe(viewLifecycleOwner, Observer { pagingData ->
+            mainAdapter.submitData(lifecycle, pagingData)
+        })
+
         viewModel.error.observe(viewLifecycleOwner, Observer { error ->
             Log.e("HomeFragment", "Error fetching user data: $error")
         })
@@ -60,6 +75,9 @@ class HomeFragment : Fragment() {
         binding.apply {
             logo.setOnClickListener {
                 navigateToProfile()
+            }
+            reportBug.setOnClickListener{
+                navigateToReportBug()
             }
         }
 
@@ -82,7 +100,11 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun navigateToProfile(){
+    private fun navigateToReportBug() {
+        findNavController().navigate(R.id.action_homeFragment_to_reportBugFragment)
+    }
+
+    private fun navigateToProfile() {
         findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
     }
 
