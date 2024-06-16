@@ -49,8 +49,12 @@ val networkModule = module {
     }
 }
 
+<<<<<<< HEAD
 val retrofitModule = module {
     single(named("default")) {
+=======
+    single {
+>>>>>>> development-authenthication
         Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(get())

@@ -1,6 +1,10 @@
 [versions]
 agp = "8.5.0"
+<<<<<<< HEAD
 compiler = "4.12.0"
+=======
+compiler = "4.16.0"
+>>>>>>> development-authenthication
 credentials = "1.2.2"
 dotsindicator = "4.2"
 googleid = "1.1.0"
@@ -29,7 +33,11 @@ activity = "1.9.0"
 constraintlayout = "2.1.4"
 viewpager2 = "1.1.0"
 googleAndroidLibrariesMapsplatformSecretsGradlePlugin = "2.0.1"
+<<<<<<< HEAD
 devtoolksp = "2.0.0-1.0.21"
+=======
+devtoolksp = "2.0.0-1.0.22"
+>>>>>>> development-authenthication
 loggingInterceptor = "4.12.0"
 converterGson = "2.11.0"
 glide = "4.16.0"
@@ -40,6 +48,7 @@ playServicesMaps = "18.2.0"
 coordinatorlayout = "1.2.0"
 swiperefreshlayout = "1.1.0"
 constraintlayoutCompose = "1.1.0-alpha13"
+playServicesLocation = "21.3.0"
 
 [libraries]
 androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutCompose" }
@@ -89,6 +98,7 @@ androidx-cardview = { group = "androidx.cardview", name = "cardview", version.re
 androidx-coordinatorlayout = { group = "androidx.coordinatorlayout", name = "coordinatorlayout", version.ref = "coordinatorlayout" }
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
 lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

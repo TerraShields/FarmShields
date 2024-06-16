@@ -125,5 +125,14 @@
     <string name="my_account">My Account</string>
     <string name="or_login_with">Or Login With</string>
     <string name="google">Google</string>
+    <string name="laporan_petani">Laporan Petani</string>
+    <string name="add_sign">Add Sign</string>
+    <string name="pilih_tanda">Pilih Tanda</string>
+
+    <string-array name="sign_array">
+        <item>Aman</item>
+        <item>Peringatan</item>
+        <item>Bahaya</item>
+    </string-array>
 </resources>
 
