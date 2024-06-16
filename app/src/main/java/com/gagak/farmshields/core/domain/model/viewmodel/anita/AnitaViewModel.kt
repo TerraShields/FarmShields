@@ -9,11 +9,18 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+data class ChatMessage(val message: String, val isUser: Boolean)
+
 class AnitaViewModel(private val anitaRepository: AnitaRepository) : ViewModel() {
-    private val _chatLiveData = MutableLiveData<String>()
-    val chatLiveData: LiveData<String> = _chatLiveData
+    private val _chatLiveData = MutableLiveData<List<ChatMessage>>()
+    val chatLiveData: LiveData<List<ChatMessage>> = _chatLiveData
+    private val messages = mutableListOf<ChatMessage>()
 
     fun sendQuestion(question: String) {
+        val userMessage = ChatMessage(question, true)
+        messages.add(userMessage)
+        _chatLiveData.value = messages.toList()
+
         anitaRepository.getAnitaResponse(question)
             .enqueue(object : Callback<AnitaResponse> {
                 override fun onResponse(
@@ -22,14 +29,22 @@ class AnitaViewModel(private val anitaRepository: AnitaRepository) : ViewModel()
                 ) {
                     if (response.isSuccessful) {
                         val anitaResponse = response.body()?.system ?: "No response"
-                        _chatLiveData.value = anitaResponse
+                        val systemMessage = ChatMessage(anitaResponse, false)
+                        messages.add(systemMessage)
+                        _chatLiveData.value = messages.toList()
                     } else {
-                        _chatLiveData.value = "Error: ${response.code()} ${response.message()}"
+                        val errorMessage = "Error: ${response.code()} ${response.message()}"
+                        val systemMessage = ChatMessage(errorMessage, false)
+                        messages.add(systemMessage)
+                        _chatLiveData.value = messages.toList()
                     }
                 }
 
                 override fun onFailure(call: Call<AnitaResponse>, t: Throwable) {
-                    _chatLiveData.value = "Error: ${t.message}"
+                    val errorMessage = "Error: ${t.message}"
+                    val systemMessage = ChatMessage(errorMessage, false)
+                    messages.add(systemMessage)
+                    _chatLiveData.value = messages.toList()
                 }
             })
     }

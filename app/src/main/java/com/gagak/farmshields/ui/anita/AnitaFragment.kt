@@ -17,7 +17,6 @@ class AnitaFragment : Fragment() {
     private val anitaViewModel: AnitaViewModel by viewModel()
     private var _binding: FragmentAnitaBinding? = null
     private val binding get() = _binding!!
-    private val chatList = mutableListOf<String>()
     private lateinit var anitaChatAdapter: AnitaChatAdapter
 
     override fun onCreateView(
@@ -31,7 +30,7 @@ class AnitaFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        anitaChatAdapter = AnitaChatAdapter(chatList)
+        anitaChatAdapter = AnitaChatAdapter(emptyList())
         binding.chatRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.chatRecyclerView.adapter = anitaChatAdapter
 
@@ -43,10 +42,11 @@ class AnitaFragment : Fragment() {
             }
         }
 
-        anitaViewModel.chatLiveData.observe(viewLifecycleOwner, Observer { response ->
-            chatList.add(response)
-            anitaChatAdapter.notifyItemInserted(chatList.size - 1)
-            binding.chatRecyclerView.scrollToPosition(chatList.size - 1)
+        anitaViewModel.chatLiveData.observe(viewLifecycleOwner, Observer { chatMessages ->
+            anitaChatAdapter = AnitaChatAdapter(chatMessages)
+            binding.chatRecyclerView.adapter = anitaChatAdapter
+            anitaChatAdapter.notifyDataSetChanged()
+            binding.chatRecyclerView.scrollToPosition(chatMessages.size - 1)
         })
     }
 
