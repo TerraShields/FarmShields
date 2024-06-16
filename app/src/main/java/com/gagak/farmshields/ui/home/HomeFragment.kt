@@ -1,4 +1,3 @@
-// HomeFragment.kt
 package com.gagak.farmshields.ui.home
 
 import android.os.Bundle
@@ -51,8 +50,6 @@ class HomeFragment : Fragment() {
                 binding.apply {
                     Glide.with(this@HomeFragment)
                         .load(userDetail.image)
-//                        .placeholder(R.drawable.placeholder_image) // Add a placeholder image
-//                        .error(R.drawable.error_image) // Add an error image
                         .into(logo)
                 }
             }
@@ -76,19 +73,15 @@ class HomeFragment : Fragment() {
             logo.setOnClickListener {
                 navigateToProfile()
             }
-<<<<<<< HEAD
             ivAnita.setOnClickListener {
                 navigateToAnita()
             }
             askFarmer.setOnClickListener {
                 navigateToAnita()
             }
-
-=======
-            reportBug.setOnClickListener{
+            reportBug.setOnClickListener {
                 navigateToReportBug()
             }
->>>>>>> development-authenthication
         }
 
         // Handle back navigation to exit the app
@@ -110,19 +103,15 @@ class HomeFragment : Fragment() {
         }
     }
 
-<<<<<<< HEAD
-    private fun navigateToAnita(){
+    private fun navigateToAnita() {
         findNavController().navigate((R.id.action_homeFragment_to_anitaFragment))
     }
 
-    private fun navigateToProfile(){
-=======
     private fun navigateToReportBug() {
-        findNavController().navigate(R.id.action_homeFragment_to_reportBugFragment)
+        findNavController().navigate(R.id.action_homeFragment_to_reportFragment)
     }
 
     private fun navigateToProfile() {
->>>>>>> development-authenthication
         findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
     }
 

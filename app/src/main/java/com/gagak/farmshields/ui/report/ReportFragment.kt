@@ -30,6 +30,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.gagak.farmshields.R
 import com.gagak.farmshields.core.data.adapter.SignAdapter
@@ -146,8 +147,8 @@ class ReportFragment : Fragment() {
     }
 
     private fun uploadReport(uri: Uri) {
-        val file = File(currentPhotoPath)
-        val requestFile = RequestBody.create("image/jpeg".toMediaTypeOrNull(), file)
+        val file = uriToFile(uri, requireContext())
+        val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
         val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
         val latitudePart = RequestBody.create("text/plain".toMediaTypeOrNull(), latitude)
         val longitudePart = RequestBody.create("text/plain".toMediaTypeOrNull(), longitude)
@@ -155,12 +156,26 @@ class ReportFragment : Fragment() {
         val signPart = RequestBody.create("text/plain".toMediaTypeOrNull(), binding.tvSign.text.toString())
 
         viewModel.report(body, latitudePart, longitudePart, descriptionPart, signPart).observe(viewLifecycleOwner) { response ->
-            if (response.isSuccessful) {
+            if (response != null && response.isSuccessful) {
                 Toast.makeText(requireContext(), "Report uploaded successfully", Toast.LENGTH_SHORT).show()
+                // Navigate to HomeFragment
+                findNavController().navigate(R.id.action_reportFragment_to_homeFragment)
             } else {
-                Toast.makeText(requireContext(), "Failed to upload report", Toast.LENGTH_SHORT).show()
+                val errorMessage = response?.errorBody()?.string() ?: "Failed to upload report"
+                Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun uriToFile(selectedImageUri: Uri, context: Context): File {
+        val contentResolver = context.contentResolver
+        val file = createImageFile()
+        val inputStream = contentResolver.openInputStream(selectedImageUri) ?: return file
+        val outputStream = FileOutputStream(file)
+        inputStream.copyTo(outputStream)
+        inputStream.close()
+        outputStream.close()
+        return file
     }
 
     private fun showBottomSheet() {
@@ -274,6 +289,7 @@ class ReportFragment : Fragment() {
                 it
             )
             intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+            currentPhotoPath = it.absolutePath
         }
 
         startActivityForResult(intent, PermissionUtils.REQUEST_CAMERA_PERMISSION)

@@ -60,13 +60,12 @@
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
         <action
-<<<<<<< HEAD
             android:id="@+id/action_homeFragment_to_anitaFragment"
             app:destination="@id/anitaFragment" />
-=======
-            android:id="@+id/action_homeFragment_to_reportBugFragment"
+        <action
+            android:id="@+id/action_homeFragment_to_reportFragment"
             app:destination="@id/reportFragment" />
->>>>>>> development-authenthication
+
     </fragment>
 
     <fragment

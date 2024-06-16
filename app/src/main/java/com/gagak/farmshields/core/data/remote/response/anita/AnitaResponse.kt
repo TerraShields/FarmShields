@@ -6,5 +6,7 @@ data class AnitaResponse(
     @SerializedName("system")
     val system: String,
     @SerializedName("caption")
-    val caption: String
+    val caption: String,
+    @SerializedName("created_at")
+    val createdAt: String
 )

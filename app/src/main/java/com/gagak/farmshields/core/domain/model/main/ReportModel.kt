@@ -16,6 +16,4 @@ data class ReportModel (
     @SerializedName("classification_result")
     val classificationResult: String,
     val location: GeoPointModel,
-    @SerializedName("created_at")
-    val createdAt: String
 )

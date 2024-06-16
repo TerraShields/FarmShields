@@ -41,8 +41,8 @@ class MainAdapter : PagingDataAdapter<ReportModel, MainAdapter.ReportViewHolder>
             reportId.text = "ID Laporan: ${report.reportId}"
             hama.text = "Hama: ${report.classificationResult}"
             lokasi.text = "Lokasi: ${report.location.latitude}, ${report.location.longitude}"
-            tanggal.text = "Tanggal: ${report.createdAt}"
             keterangan.text = "Keterangan: ${report.description}"
+            sign.text = report.sign
 
             Glide.with(itemView.context)
                 .load(report.image)

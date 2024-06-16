@@ -32,25 +32,25 @@ class AnitaChatAdapter(private val chatList: List<ChatMessage>) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val message = chatList[position]
         if (holder is UserViewHolder) {
-            holder.bind(message.message)
+            holder.bind(message.message, message.createdAt)
         } else if (holder is SystemViewHolder) {
-            holder.bind(message.message)
+            holder.bind(message.message, message.createdAt)
         }
     }
 
     override fun getItemCount(): Int = chatList.size
 
     class UserViewHolder(private val binding: AnitaUserLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(message: String) {
+        fun bind(message: String, createdAt: String) {
             binding.messageTextView.text = message
-            binding.timestampTextView.text = "Timestamp" // Replace with actual timestamp logic
+            binding.timestampTextView.text = createdAt
         }
     }
 
     class SystemViewHolder(private val binding: AnitaLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(message: String) {
+        fun bind(message: String, createdAt: String) {
             binding.messageTextView.text = message
-            binding.timestampTextView.text = "Timestamp" // Replace with actual timestamp logic
+            binding.timestampTextView.text = createdAt
         }
     }
 }

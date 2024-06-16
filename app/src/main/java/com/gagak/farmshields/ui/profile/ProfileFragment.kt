@@ -43,7 +43,7 @@ class ProfileFragment : Fragment() {
             response?.data?.user?.let { userDetail ->
                 binding.apply {
                     profileName.text = userDetail.name
-
+                    email.text = userDetail.email
                     Glide.with(this@ProfileFragment)
                         .load(userDetail.image)
                         .into(profileImage)

@@ -9,7 +9,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-data class ChatMessage(val message: String, val isUser: Boolean)
+data class ChatMessage(val message: String, val isUser: Boolean, val createdAt: String = "")
 
 class AnitaViewModel(private val anitaRepository: AnitaRepository) : ViewModel() {
     private val _chatLiveData = MutableLiveData<List<ChatMessage>>()
@@ -28,8 +28,8 @@ class AnitaViewModel(private val anitaRepository: AnitaRepository) : ViewModel()
                     response: Response<AnitaResponse>
                 ) {
                     if (response.isSuccessful) {
-                        val anitaResponse = response.body()?.system ?: "No response"
-                        val systemMessage = ChatMessage(anitaResponse, false)
+                        val anitaResponse = response.body()
+                        val systemMessage = ChatMessage(anitaResponse?.system ?: "No response", false, anitaResponse?.createdAt ?: "")
                         messages.add(systemMessage)
                         _chatLiveData.value = messages.toList()
                     } else {

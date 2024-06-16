@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".ui.anita.AnitaFragment">
 
     <TextView
@@ -28,7 +29,7 @@
         android:src="@drawable/ic_add_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerTextView" />
+        app:layout_constraintTop_toBottomOf="@id/headerTextView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatRecyclerView"
@@ -39,7 +40,7 @@
         app:layout_constraintBottom_toTopOf="@+id/inputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleImageView"
+        app:layout_constraintTop_toBottomOf="@id/titleImageView"
         tools:listitem="@layout/anita_layout" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -58,7 +59,7 @@
             android:id="@+id/inputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Masukan Pertyaan"
+            android:hint="@string/masukan_pertyaan"
             android:inputType="text"
             android:importantForAccessibility="no" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -69,7 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:text="Kirim"
+        android:text="@string/send"
         android:textColor="@android:color/white"
         app:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="@+id/inputLayout"

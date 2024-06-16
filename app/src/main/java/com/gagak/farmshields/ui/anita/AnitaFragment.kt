@@ -2,8 +2,12 @@ package com.gagak.farmshields.ui.anita
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,6 +43,7 @@ class AnitaFragment : Fragment() {
             if (question.isNotEmpty()) {
                 anitaViewModel.sendQuestion(question)
                 binding.inputEditText.text?.clear()
+                hideKeyboard()
             }
         }
 
@@ -48,6 +53,28 @@ class AnitaFragment : Fragment() {
             anitaChatAdapter.notifyDataSetChanged()
             binding.chatRecyclerView.scrollToPosition(chatMessages.size - 1)
         })
+
+        setupUI(view)
+    }
+
+    private fun hideKeyboard() {
+        val imm = getSystemService(requireContext(), InputMethodManager::class.java)
+        imm?.hideSoftInputFromWindow(view?.windowToken, 0)
+    }
+
+    private fun setupUI(view: View) {
+        if (view !is EditText) {
+            view.setOnTouchListener { _, _ ->
+                hideKeyboard()
+                false
+            }
+        }
+        if (view is ViewGroup) {
+            for (i in 0 until view.childCount) {
+                val innerView = view.getChildAt(i)
+                setupUI(innerView)
+            }
+        }
     }
 
     override fun onDestroyView() {

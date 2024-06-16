@@ -40,4 +40,8 @@ class NameCustomeView(context: Context, attrs: AttributeSet) : LinearLayout(cont
             nameInputLayout.boxStrokeColor = ContextCompat.getColor(context, R.color.colorPrimaryVariant)
         }
     }
+
+    fun getText(): String {
+        return nameEditText.text.toString()
+    }
 }

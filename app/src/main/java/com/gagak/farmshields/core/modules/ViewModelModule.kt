@@ -10,9 +10,6 @@ import org.koin.dsl.module
 val viewModule = module {
     viewModelOf(::AuthViewModel)
     viewModelOf(::UserViewModel)
-<<<<<<< HEAD
     viewModelOf(::AnitaViewModel)
-=======
     viewModelOf(::MainViewModel)
->>>>>>> development-authenthication
 }

@@ -10,5 +10,7 @@ data class AuthModel(
     @SerializedName("password")
     val password: String,
     @SerializedName("user_id")
-    val userId: String
+    val userId: String,
+    @SerializedName("password_confirmation")
+    val passwordConfirmation: String? = null
 )

@@ -56,15 +56,6 @@ interface ApiService {
     ): Response<UsersUpdateResponse>
 
     // Report Hama
-    @Multipart
-    @POST("report")
-    suspend fun report(
-        @Part image: MultipartBody.Part,
-        @Part("latitude") latitude: RequestBody,
-        @Part("longitude") longitude: RequestBody,
-        @Part("description") description: RequestBody,
-        @Part("sign") sign: RequestBody
-    ): Response<MainResponse>
 
     @GET("report")
     suspend fun getReport(

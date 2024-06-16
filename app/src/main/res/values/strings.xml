@@ -128,6 +128,10 @@
     <string name="laporan_petani">Laporan Petani</string>
     <string name="add_sign">Add Sign</string>
     <string name="pilih_tanda">Pilih Tanda</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="password_mismatch_error">password didn\'t match</string>
+    <string name="send">Kirim</string>
+    <string name="masukan_pertyaan">Masukan Pertyaan</string>
 
     <string-array name="sign_array">
         <item>Aman</item>

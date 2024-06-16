@@ -48,4 +48,8 @@ class EmailCustomeView(context: Context, attrs: AttributeSet) : LinearLayout(con
             emailInputLayout.boxStrokeColor = ContextCompat.getColor(context, R.color.colorPrimaryVariant)
         }
     }
+
+    fun getText(): String {
+        return emailEditText.text.toString()
+    }
 }

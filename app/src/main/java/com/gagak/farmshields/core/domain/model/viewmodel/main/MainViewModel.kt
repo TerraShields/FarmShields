@@ -13,7 +13,7 @@ import okhttp3.RequestBody
 import retrofit2.Response
 
 class MainViewModel(
-    private val repository: MainRepository
+    private val repository: MainRepository,
 ) : ViewModel() {
 
     fun getReports() = repository.getReports().cachedIn(viewModelScope)
