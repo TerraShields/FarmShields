@@ -57,6 +57,9 @@ class ProfileFragment : Fragment() {
 
         // Handle logout button click
         binding.apply {
+            myAccount.setOnClickListener {
+                findNavController().navigate(R.id.action_profileFragment_to_profileUpdateFragment)
+            }
             ibLogout.setOnClickListener {
                 logout()
             }

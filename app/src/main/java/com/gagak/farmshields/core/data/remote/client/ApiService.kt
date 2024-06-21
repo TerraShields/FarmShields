@@ -50,10 +50,11 @@ interface ApiService {
     @PATCH("auth/user")
     @Multipart
     suspend fun updateUser(
-        @Part image: MultipartBody.Part,
-        @Part("name") name: RequestBody,
-        @Part("address") address: RequestBody
+        @Part image: MultipartBody.Part? = null,
+        @Part("name") name: RequestBody? = null,
+        @Part("address") address: RequestBody? = null
     ): Response<UsersUpdateResponse>
+
 
     // Report Hama
 
