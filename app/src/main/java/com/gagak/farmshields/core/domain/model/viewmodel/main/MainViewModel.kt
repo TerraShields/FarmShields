@@ -22,12 +22,11 @@ class MainViewModel(
         image: MultipartBody.Part,
         latitude: RequestBody,
         longitude: RequestBody,
-        description: RequestBody,
         sign: RequestBody
     ): LiveData<Response<MainResponse>> {
         val result = MutableLiveData<Response<MainResponse>>()
         viewModelScope.launch {
-            val response = repository.report(image, latitude, longitude, description, sign)
+            val response = repository.report(image, latitude, longitude, sign)
             result.postValue(response)
         }
         return result

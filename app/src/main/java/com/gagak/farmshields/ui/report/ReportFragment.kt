@@ -152,10 +152,12 @@ class ReportFragment : Fragment() {
         val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
         val latitudePart = RequestBody.create("text/plain".toMediaTypeOrNull(), latitude)
         val longitudePart = RequestBody.create("text/plain".toMediaTypeOrNull(), longitude)
-        val descriptionPart = RequestBody.create("text/plain".toMediaTypeOrNull(), binding.etPostText.text.toString())
         val signPart = RequestBody.create("text/plain".toMediaTypeOrNull(), binding.tvSign.text.toString())
 
-        viewModel.report(body, latitudePart, longitudePart, descriptionPart, signPart).observe(viewLifecycleOwner) { response ->
+        binding.progressBar.visibility = View.VISIBLE // Show progress bar
+
+        viewModel.report(body, latitudePart, longitudePart, signPart).observe(viewLifecycleOwner) { response ->
+            binding.progressBar.visibility = View.GONE // Hide progress bar
             if (response != null && response.isSuccessful) {
                 Toast.makeText(requireContext(), "Report uploaded successfully", Toast.LENGTH_SHORT).show()
                 // Navigate to HomeFragment
@@ -308,6 +310,10 @@ class ReportFragment : Fragment() {
                 .setCancelable(false)
                 .setPositiveButton("Yes") { _, _ ->
                     startActivityForResult(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), 100)
+                }
+                .setNegativeButton("No") { dialog, _ ->
+                    dialog.dismiss()
+                    Toast.makeText(requireContext(), "GPS is required to fetch location", Toast.LENGTH_SHORT).show()
                 }
                 .show()
         } else {
@@ -489,3 +495,4 @@ class ReportFragment : Fragment() {
         fusedLocationClient.removeLocationUpdates(locationCallback)
     }
 }
+

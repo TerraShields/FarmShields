@@ -31,11 +31,10 @@ class MainRepository(
         image: MultipartBody.Part,
         latitude: RequestBody,
         longitude: RequestBody,
-        description: RequestBody,
         sign: RequestBody
     ): Response<MainResponse> {
         return withContext(Dispatchers.IO) {
-            reportApiService.report(image, latitude, longitude, description, sign)
+            reportApiService.report(image, latitude, longitude, sign)
         }
     }
 }
