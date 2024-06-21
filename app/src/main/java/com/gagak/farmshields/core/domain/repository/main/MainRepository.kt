@@ -7,6 +7,7 @@ import com.gagak.farmshields.core.data.adapter.PagingSources
 import com.gagak.farmshields.core.data.remote.client.ApiService
 import com.gagak.farmshields.core.data.remote.client.ReportApiService
 import com.gagak.farmshields.core.data.remote.response.main.MainResponse
+import com.gagak.farmshields.core.data.remote.response.main.ReportResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.MultipartBody
@@ -26,6 +27,12 @@ class MainRepository(
         ),
         pagingSourceFactory = { PagingSources(apiService) }
     ).liveData
+
+    suspend fun getReport(page: Int, size: Int, location: Int): Response<ReportResponse> {
+        return withContext(Dispatchers.IO) {
+            apiService.getReport(page, size, location)
+        }
+    }
 
     suspend fun report(
         image: MultipartBody.Part,

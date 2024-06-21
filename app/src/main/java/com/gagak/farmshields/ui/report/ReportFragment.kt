@@ -109,6 +109,9 @@ class ReportFragment : Fragment() {
         })
 
         binding.apply {
+            ivBack.setOnClickListener {
+                findNavController().navigate(R.id.homeFragment)
+            }
             ivAddSign.setOnClickListener {
                 showBottomSheet()
             }
@@ -495,4 +498,3 @@ class ReportFragment : Fragment() {
         fusedLocationClient.removeLocationUpdates(locationCallback)
     }
 }
-

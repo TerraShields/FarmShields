@@ -9,7 +9,7 @@
         android:id="@+id/splashFragment"
         android:name="com.gagak.farmshields.SplashFragment"
         android:label="Splash"
-        tools:layout="@layout/fragment_splash" >
+        tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_onboardingFragment"
             app:destination="@id/onboardingFragment"
@@ -65,7 +65,14 @@
         <action
             android:id="@+id/action_homeFragment_to_reportFragment"
             app:destination="@id/reportFragment" />
-
+        <action
+            android:id="@+id/action_homeFragment_to_homeDetailsFragment"
+            app:destination="@id/homeDetailsFragment">
+            <argument
+                android:name="report"
+                app:argType="com.gagak.farmshields.core.domain.model.main.ReportModel"
+                app:nullable="false" />
+        </action>
     </fragment>
 
     <fragment
@@ -133,6 +140,16 @@
         android:name="com.gagak.farmshields.ui.anita.AnitaFragment"
         android:label="fragment_anita"
         tools:layout="@layout/fragment_anita">
+    </fragment>
+    <fragment
+        android:id="@+id/homeDetailsFragment"
+        android:name="com.gagak.farmshields.ui.home.HomeDetailsFragment"
+        android:label="fragment_home_details"
+        tools:layout="@layout/fragment_home_details">
+        <argument
+            android:name="report"
+            app:argType="com.gagak.farmshields.core.domain.model.main.ReportModel"
+            app:nullable="false" />
     </fragment>
 
 </navigation>

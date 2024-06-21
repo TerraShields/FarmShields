@@ -30,10 +30,10 @@ object Date {
 
         return when {
             seconds < 1 -> "now"
-            seconds < 60 -> "$seconds sec"
-            minutes < 60 -> "$minutes min"
-            hours < 24 -> "$hours h"
-            days < 7 -> "$days d"
+            seconds < 60 -> "$seconds detik yang lalu"
+            minutes < 60 -> "$minutes minutes yang lalu"
+            hours < 24 -> "$hours jam yang lalu"
+            days < 7 -> "$days hari yang lalu"
             weeks < 4 -> "$weeks week${if (weeks > 1) "s" else ""}"
             months < 12 -> "$months month${if (months > 1) "s" else ""} ago"
             else -> SimpleDateFormat("d MMMM", Locale.getDefault()).format(Date(startTime))

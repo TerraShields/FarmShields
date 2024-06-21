@@ -32,7 +32,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -55,7 +54,7 @@ class HomeFragment : Fragment() {
             }
         })
 
-        mainAdapter = MainAdapter()
+        mainAdapter = MainAdapter(requireContext())
         binding.recyclerViewReports.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = mainAdapter
@@ -63,6 +62,15 @@ class HomeFragment : Fragment() {
 
         mainViewModel.getReports().observe(viewLifecycleOwner, Observer { pagingData ->
             mainAdapter.submitData(lifecycle, pagingData)
+        })
+
+        mainViewModel.getReport(1, 10, 0).observe(viewLifecycleOwner, Observer { response ->
+            if (response.isSuccessful) {
+                val reports = response.body()?.data
+                // handle reports
+            } else {
+                Log.e("HomeFragment", "Error fetching reports: ${response.errorBody()?.string()}")
+            }
         })
 
         viewModel.error.observe(viewLifecycleOwner, Observer { error ->
@@ -84,12 +92,11 @@ class HomeFragment : Fragment() {
             }
         }
 
-        // Handle back navigation to exit the app
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
-                    requireActivity().finishAffinity() // Exit the app
+                    requireActivity().finishAffinity()
                 }
             }
         )

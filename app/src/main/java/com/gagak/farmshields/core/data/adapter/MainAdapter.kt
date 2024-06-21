@@ -6,14 +6,18 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gagak.farmshields.R
 import com.gagak.farmshields.core.domain.model.main.ReportModel
+import com.gagak.farmshields.core.utils.Date
+import com.gagak.farmshields.core.utils.GeocodingUtils
+import com.gagak.farmshields.ui.home.HomeFragmentDirections
 
-class MainAdapter : PagingDataAdapter<ReportModel, MainAdapter.ReportViewHolder>(DIFF_CALLBACK) {
+class MainAdapter(private val context: android.content.Context) : PagingDataAdapter<ReportModel, MainAdapter.ReportViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReportViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_report, parent, false)
@@ -23,7 +27,7 @@ class MainAdapter : PagingDataAdapter<ReportModel, MainAdapter.ReportViewHolder>
     override fun onBindViewHolder(holder: ReportViewHolder, position: Int) {
         val report = getItem(position)
         if (report != null) {
-            holder.bind(report)
+            holder.bind(report, context)
         }
     }
 
@@ -37,10 +41,11 @@ class MainAdapter : PagingDataAdapter<ReportModel, MainAdapter.ReportViewHolder>
         private val sign: TextView = itemView.findViewById(R.id.sign)
         private val container: View = itemView.findViewById(R.id.report_container)
 
-        fun bind(report: ReportModel) {
+        fun bind(report: ReportModel, context: android.content.Context) {
             reportId.text = "ID Laporan: ${report.reportId}"
             hama.text = "Hama: ${report.classificationResult}"
-            lokasi.text = "Lokasi: ${report.location.latitude}, ${report.location.longitude}"
+            tanggal.text = "Tanggal: ${Date.formatTimeDifference(Date.parseIso8601(report.createdAt), System.currentTimeMillis())}"
+            lokasi.text = "Lokasi: ${GeocodingUtils.getLocationName(context, report.location.latitude.toDouble(), report.location.longitude.toDouble())}"
             keterangan.text = "Keterangan: ${report.description}"
             sign.text = report.sign
 
@@ -61,6 +66,11 @@ class MainAdapter : PagingDataAdapter<ReportModel, MainAdapter.ReportViewHolder>
                     sign.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.warningnSign))
                     container.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.warningContainer))
                 }
+            }
+
+            itemView.setOnClickListener {
+                val action = HomeFragmentDirections.actionHomeFragmentToHomeDetailsFragment(report)
+                it.findNavController().navigate(action)
             }
         }
     }

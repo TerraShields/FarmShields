@@ -1,6 +1,7 @@
 package com.gagak.farmshields.core.domain.model.main
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class PredictionModel (
     @SerializedName("C")
@@ -21,4 +22,4 @@ data class PredictionModel (
     val sw: Float,
     @SerializedName("W")
     val w: Float
-)
+): Serializable
