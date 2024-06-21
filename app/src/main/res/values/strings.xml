@@ -140,6 +140,7 @@
     <string name="icon">Icon Camera</string>
     <string name="icon_camera">Icon Camera</string>
     <string name="gallery">Gallery</string>
+    <string name="enable_edit">Edit</string>
 
     <string-array name="sign_array">
         <item>Aman</item>

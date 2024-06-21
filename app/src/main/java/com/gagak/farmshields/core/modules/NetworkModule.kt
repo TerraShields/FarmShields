@@ -27,13 +27,10 @@ val networkModule = module {
             val request = if (!token.isNullOrEmpty()) {
                 original.newBuilder()
                     .addHeader("Authorization", "Bearer $token")
-                    .addHeader("Content-Type", "application/json")
                     .build()
             } else {
                 Log.e("AuthInterceptor", "Error: Token is null or empty $token")
-                original.newBuilder()
-                    .addHeader("Content-Type", "application/json")
-                    .build()
+                original
             }
             chain.proceed(request)
         }

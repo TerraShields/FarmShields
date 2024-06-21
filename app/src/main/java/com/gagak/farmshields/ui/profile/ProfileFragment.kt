@@ -102,7 +102,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun home() {
-        // Navigate back to login screen and clear the back stack
+        // Navigate back to home screen
         findNavController().navigate(R.id.action_profileFragment_to_homeFragment, null)
     }
 

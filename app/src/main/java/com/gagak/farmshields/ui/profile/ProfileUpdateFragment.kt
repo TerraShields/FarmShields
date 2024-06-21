@@ -14,15 +14,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.gagak.farmshields.R
 import com.gagak.farmshields.core.domain.model.viewmodel.user.UserViewModel
-import com.gagak.farmshields.databinding.FragmentProfileUpdateBinding
 import com.gagak.farmshields.core.utils.PermissionUtils
+import com.gagak.farmshields.databinding.FragmentProfileUpdateBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -61,41 +60,55 @@ class ProfileUpdateFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
         viewModel.getUser()
-
-        binding.RUpdate.setOnClickListener {
-            val name = if (binding.RUsername.text.toString().isNotEmpty()) {
-                RequestBody.create("text/plain".toMediaTypeOrNull(), binding.RUsername.text.toString())
-            } else null
-
-            val address = if (binding.RPassword.text.toString().isNotEmpty()) {
-                RequestBody.create("text/plain".toMediaTypeOrNull(), binding.RPassword.text.toString())
-            } else null
-
-            val image: MultipartBody.Part? = selectedImageUri?.let {
-                val file = uriToFile(it)
-                val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-                MultipartBody.Part.createFormData("image", file.name, requestFile)
+        binding.apply {
+            // Disable text fields by default
+            RUsername.isEnabled = false
+            REmail.isEnabled = false
+            RPassword.isEnabled = false
+            // Enable text fields when the button is clicked
+            enableEditButton.setOnClickListener {
+                binding.RUsername.isEnabled = true
+                binding.RPassword.isEnabled = true
             }
 
-            viewModel.updateUser(image, name, address)
+            RUpdate.setOnClickListener {
+                val name = if (binding.RUsername.isEnabled && binding.RUsername.text.toString().isNotEmpty()) {
+                    RequestBody.create("text/plain".toMediaTypeOrNull(), binding.RUsername.text.toString())
+                } else null
+
+                val address = if (binding.RPassword.isEnabled && binding.RPassword.text.toString().isNotEmpty()) {
+                    RequestBody.create("text/plain".toMediaTypeOrNull(), binding.RPassword.text.toString())
+                } else null
+
+                // Convert URI to File and create MultipartBody.Part
+                val image: MultipartBody.Part? = selectedImageUri?.let {
+                    val file = uriToFile(it)
+                    val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+                    MultipartBody.Part.createFormData("image", file.name, requestFile)
+                }
+
+                // Update user with image, name, and address
+                viewModel.updateUser(image, name, address)
+            }
+            // Set click and long click listeners for the profile image and icon
+            profileImage.setOnClickListener {
+                showBottomSheet()
+            }
+            iconImage.setOnClickListener {
+                showBottomSheet()
+            }
+
+            profileImage.setOnLongClickListener {
+                showBottomSheet()
+                true
+            }
+
+            iconImage.setOnLongClickListener {
+                showBottomSheet()
+                true
+            }
         }
 
-        // Set click and long click listeners for the profile image and icon
-        binding.profileImage.setOnClickListener {
-            showBottomSheet()
-        }
-        binding.iconImage.setOnClickListener {
-            showBottomSheet()
-        }
-
-        binding.profileImage.setOnLongClickListener {
-            showBottomSheet()
-            true
-        }
-        binding.iconImage.setOnLongClickListener {
-            showBottomSheet()
-            true
-        }
     }
 
     private fun setupObservers() {
