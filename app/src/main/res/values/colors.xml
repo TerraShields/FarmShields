@@ -11,8 +11,16 @@
     <color name="bottom_nav_text_color">#4CAF50</color>
     <color name="selected_item_color">#D5E8D4</color>
     <color name="green_light">#BEE3CB</color>
-    <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryVariant">#34A853</color>
-    <color name="colorSecondary">#4CAF50</color>
+    <color name="colorPrimary">#4CAF50</color>
+    <color name="colorPrimaryVariant">#4CAF50</color>
+    <color name="colorSecondary">#FFFFFFFF</color>
     <color name="colorSecondaryVariant">#BEE3CB</color>
+    <color name="colorThirdVariant">#34A853</color>
+    <color name="dangerSign">#FA0000</color>
+    <color name="dangerContainer">#F48787</color>
+    <color name="safeContainer">#BEE3CB</color>
+    <color name="warningContainer">#FFE500</color>
+    <color name="safeSign">#05F900</color>
+    <color name="light_red">#F48787</color>
+    <color name="warningnSign">#FFA800</color>
 </resources>

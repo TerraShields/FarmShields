@@ -40,9 +40,6 @@ object CustomBottomNavigationViewHelper {
                 navController.navigate(menuItem.itemId)
             }
         }
-
-        // Set initial selection
-        menuView.getChildAt(0).performClick()
     }
 
     fun updateSelectedItem(bottomNavigationView: BottomNavigationView, itemId: Int) {

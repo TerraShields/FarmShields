@@ -27,10 +27,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.gagak.farmshields" />
+                  <option name="mobileSdkAppId" value="1:534488982667:android:a68ecfc566816273a1608e" />
+                  <option name="projectId" value="capstone-32fce" />
+                  <option name="projectNumber" value="534488982667" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

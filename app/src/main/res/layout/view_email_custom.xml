@@ -5,13 +5,21 @@
         android:id="@+id/username_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:hintEnabled="true">
+        app:hintEnabled="true"
+        app:boxStrokeColor="@color/colorPrimary"
+        app:hintTextColor="@color/colorPrimary"
+        app:boxStrokeWidth="1dp"
+        app:boxStrokeWidthFocused="2dp"
+        app:boxBackgroundMode="outline"
+        app:endIconTint="@color/colorPrimary">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/username_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black"
+            android:textColorHint="@color/colorPrimary"/>
     </com.google.android.material.textfield.TextInputLayout>
 </merge>

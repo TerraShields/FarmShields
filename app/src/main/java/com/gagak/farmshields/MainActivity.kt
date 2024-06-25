@@ -1,6 +1,7 @@
 package com.gagak.farmshields
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ import com.gagak.farmshields.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Disable night mode
@@ -29,18 +31,13 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.frame_container) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.frame_container) as NavHostFragment
         navController = navHostFragment.navController
 
-        // Set up custom bottom navigation view
-        CustomBottomNavigationViewHelper.setupBottomNavigationView(this, binding.bottomNav, navController)
-
-        // Set up navigation with bottom nav
-        binding.bottomNav.setupWithNavController(navController)
-
+        // Set up custom bottom navigation view after ensuring initial fragment is shown
         navController.addOnDestinationChangedListener { _, destination, _ ->
+            Log.d("MainActivity", "Destination changed to: ${destination.id} (${destination.label})")
+
             when (destination.id) {
                 R.id.homeFragment,
                 R.id.communityFragment,
@@ -52,14 +49,15 @@ class MainActivity : AppCompatActivity() {
                 else -> hideBottomNav()
             }
         }
+
+        // Set up bottom navigation view
+        CustomBottomNavigationViewHelper.setupBottomNavigationView(this, binding.bottomNav, navController)
     }
 
-    // Show navigation bottom
     private fun showBottomNav() {
         binding.bottomNav.visibility = View.VISIBLE
     }
 
-    // Hide navigation bottom
     private fun hideBottomNav() {
         binding.bottomNav.visibility = View.GONE
     }
