@@ -34,7 +34,7 @@ class HomeDetailsFragment : Fragment() {
 
         binding.apply {
             placeTitle.text = report.classificationResult
-            pestName.text = "ID Report: ${report.reportId}"
+            pestName.text = report.reportId
             placeLocation.text = GeocodingUtils.getLocationName(requireContext(), report.location.latitude.toDouble(), report.location.longitude.toDouble())
             placeDate.text = "Tanggal: ${Date.formatTimeDifference(Date.parseIso8601(report.createdAt), System.currentTimeMillis())}"
             placeDetails.text = report.description

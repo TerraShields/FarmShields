@@ -68,4 +68,11 @@
     <style name="CustomProgressBar" parent="Widget.AppCompat.ProgressBar">
         <item name="android:indeterminateTint">@color/colorPrimary</item>
     </style>
+
+    <style name="Theme.FarmShields.Maps" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Transparent status bar -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
 </resources>

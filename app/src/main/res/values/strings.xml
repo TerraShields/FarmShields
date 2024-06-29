@@ -141,6 +141,9 @@
     <string name="icon_camera">Icon Camera</string>
     <string name="gallery">Gallery</string>
     <string name="enable_edit">Edit</string>
+    <string name="current_location">Current Location</string>
+    <string name="locationss">Location</string>
+    <string name="names">Name</string>
 
     <string-array name="sign_array">
         <item>Aman</item>

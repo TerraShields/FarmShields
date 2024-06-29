@@ -60,7 +60,7 @@ class ReportFragment : Fragment() {
     private var selectedImageUri: Uri? = null
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationRequest: LocationRequest
-    private lateinit var locationCallback: LocationCallback
+    private var locationCallback: LocationCallback? = null
     private var latitude: String = ""
     private var longitude: String = ""
 
@@ -358,7 +358,7 @@ class ReportFragment : Fragment() {
             }
         }
 
-        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null)
+        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback!!, null)
     }
 
     @Throws(IOException::class)
@@ -495,6 +495,6 @@ class ReportFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        fusedLocationClient.removeLocationUpdates(locationCallback)
+        locationCallback?.let { fusedLocationClient.removeLocationUpdates(it) }
     }
 }

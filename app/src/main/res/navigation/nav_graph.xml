@@ -154,6 +154,7 @@
             app:argType="com.gagak.farmshields.core.domain.model.main.ReportModel"
             app:nullable="false" />
     </fragment>
+
     <fragment
         android:id="@+id/profileUpdateFragment"
         android:name="com.gagak.farmshields.ui.profile.ProfileUpdateFragment"

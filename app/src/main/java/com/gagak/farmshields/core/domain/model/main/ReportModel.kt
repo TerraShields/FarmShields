@@ -18,6 +18,8 @@ data class ReportModel(
     val classificationResult: String = "",
     val location: GeoPointModel = GeoPointModel("", ""),
     val result: Result = Result(),
+    @SerializedName("prediction")
+    val prediction: PredictionModel = PredictionModel(0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f),
     @SerializedName("created_at")
     val createdAt: String = "",
     @SerializedName("delete_countdown")
