@@ -13,8 +13,7 @@ import retrofit2.http.Part
 
 interface ChatApiService {
     @POST("api/chat")
-    @Multipart
     fun postAnita(
-        @Part("caption") caption: AnitaModel
+        @Body caption: AnitaModel
     ): Call<AnitaResponse>
 }

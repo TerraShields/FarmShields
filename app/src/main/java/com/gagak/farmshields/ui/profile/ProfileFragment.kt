@@ -57,6 +57,9 @@ class ProfileFragment : Fragment() {
 
         // Handle logout button click
         binding.apply {
+            myAccount.setOnClickListener {
+                findNavController().navigate(R.id.action_profileFragment_to_profileUpdateFragment)
+            }
             ibLogout.setOnClickListener {
                 logout()
             }
@@ -99,7 +102,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun home() {
-        // Navigate back to login screen and clear the back stack
+        // Navigate back to home screen
         findNavController().navigate(R.id.action_profileFragment_to_homeFragment, null)
     }
 

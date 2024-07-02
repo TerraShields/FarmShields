@@ -132,6 +132,18 @@
     <string name="password_mismatch_error">password didn\'t match</string>
     <string name="send">Kirim</string>
     <string name="masukan_pertyaan">Masukan Pertyaan</string>
+    <string name="details">Details</string>
+    <string name="descs">Description</string>
+    <string name="id_report">ID Report:</string>
+    <string name="update">Update</string>
+    <string name="ubah">Ubah</string>
+    <string name="icon">Icon Camera</string>
+    <string name="icon_camera">Icon Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="enable_edit">Edit</string>
+    <string name="current_location">Current Location</string>
+    <string name="locationss">Location</string>
+    <string name="names">Name</string>
 
     <string-array name="sign_array">
         <item>Aman</item>

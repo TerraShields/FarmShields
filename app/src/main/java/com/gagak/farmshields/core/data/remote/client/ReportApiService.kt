@@ -16,7 +16,6 @@ interface ReportApiService {
         @Part image: MultipartBody.Part,
         @Part("latitude") latitude: RequestBody,
         @Part("longitude") longitude: RequestBody,
-        @Part("description") description: RequestBody,
         @Part("sign") sign: RequestBody
     ): Response<MainResponse>
 }

@@ -14,6 +14,7 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 val networkModule = module {
     single { AuthPreferences(get()) }
@@ -26,13 +27,10 @@ val networkModule = module {
             val request = if (!token.isNullOrEmpty()) {
                 original.newBuilder()
                     .addHeader("Authorization", "Bearer $token")
-                    .addHeader("Content-Type", "application/json")
                     .build()
             } else {
                 Log.e("AuthInterceptor", "Error: Token is null or empty $token")
-                original.newBuilder()
-                    .addHeader("Content-Type", "application/json")
-                    .build()
+                original
             }
             chain.proceed(request)
         }
@@ -46,9 +44,13 @@ val networkModule = module {
         OkHttpClient.Builder()
             .addInterceptor(get<Interceptor>())
             .addInterceptor(loggingInterceptor)
+            .connectTimeout(60, TimeUnit.SECONDS)  // Increased connect timeout
+            .writeTimeout(60, TimeUnit.SECONDS)    // Increased write timeout
+            .readTimeout(60, TimeUnit.SECONDS)     // Increased read timeout
             .build()
     }
 }
+
 
 val retrofitModule = module {
     single(named("default")) {
@@ -87,3 +89,4 @@ val retrofitModule = module {
         get<Retrofit>(named("report")).create(ReportApiService::class.java)
     }
 }
+

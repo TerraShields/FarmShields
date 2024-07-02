@@ -60,7 +60,7 @@ class ReportFragment : Fragment() {
     private var selectedImageUri: Uri? = null
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var locationRequest: LocationRequest
-    private lateinit var locationCallback: LocationCallback
+    private var locationCallback: LocationCallback? = null
     private var latitude: String = ""
     private var longitude: String = ""
 
@@ -109,6 +109,9 @@ class ReportFragment : Fragment() {
         })
 
         binding.apply {
+            ivBack.setOnClickListener {
+                findNavController().navigate(R.id.homeFragment)
+            }
             ivAddSign.setOnClickListener {
                 showBottomSheet()
             }
@@ -152,10 +155,12 @@ class ReportFragment : Fragment() {
         val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
         val latitudePart = RequestBody.create("text/plain".toMediaTypeOrNull(), latitude)
         val longitudePart = RequestBody.create("text/plain".toMediaTypeOrNull(), longitude)
-        val descriptionPart = RequestBody.create("text/plain".toMediaTypeOrNull(), binding.etPostText.text.toString())
         val signPart = RequestBody.create("text/plain".toMediaTypeOrNull(), binding.tvSign.text.toString())
 
-        viewModel.report(body, latitudePart, longitudePart, descriptionPart, signPart).observe(viewLifecycleOwner) { response ->
+        binding.progressBar.visibility = View.VISIBLE // Show progress bar
+
+        viewModel.report(body, latitudePart, longitudePart, signPart).observe(viewLifecycleOwner) { response ->
+            binding.progressBar.visibility = View.GONE // Hide progress bar
             if (response != null && response.isSuccessful) {
                 Toast.makeText(requireContext(), "Report uploaded successfully", Toast.LENGTH_SHORT).show()
                 // Navigate to HomeFragment
@@ -309,6 +314,10 @@ class ReportFragment : Fragment() {
                 .setPositiveButton("Yes") { _, _ ->
                     startActivityForResult(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), 100)
                 }
+                .setNegativeButton("No") { dialog, _ ->
+                    dialog.dismiss()
+                    Toast.makeText(requireContext(), "GPS is required to fetch location", Toast.LENGTH_SHORT).show()
+                }
                 .show()
         } else {
             getCurrentLocation()
@@ -349,7 +358,7 @@ class ReportFragment : Fragment() {
             }
         }
 
-        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null)
+        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback!!, null)
     }
 
     @Throws(IOException::class)
@@ -486,6 +495,6 @@ class ReportFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        fusedLocationClient.removeLocationUpdates(locationCallback)
+        locationCallback?.let { fusedLocationClient.removeLocationUpdates(it) }
     }
 }
